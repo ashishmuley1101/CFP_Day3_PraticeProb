@@ -1,6 +1,8 @@
 package com.bridgelabz.day3greetingapp.controller;
 
 import com.bridgelabz.day3greetingapp.model.Greeting;
+import com.bridgelabz.day3greetingapp.service.GreetingService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.concurrent.atomic.AtomicLong;
@@ -30,8 +32,18 @@ public class GreetingController {
     private static final String template = "Hello, %s!";
     private final AtomicLong counter = new AtomicLong();
 
+    @Autowired
+    public GreetingService service;
+
     @GetMapping(value = {"", "/", "/home"})
     public Greeting greeting(@RequestParam(value = "name", defaultValue = "World") String name) {
         return new Greeting((int) counter.incrementAndGet(), String.format(template, name));
+    }
+
+    //UC3
+    @GetMapping("/greetingsWithUser")
+    public String greetingWithUserName(@RequestParam(value = "firstName", defaultValue = "") String firstName,
+                                       @RequestParam(value = "lastName", defaultValue = "") String lastName) {
+        return service.greetingWithUserName(firstName, lastName);
     }
 }
