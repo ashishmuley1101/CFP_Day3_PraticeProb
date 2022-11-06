@@ -52,4 +52,11 @@ public class GreetingController {
     public Greeting addGreeting(@RequestBody Greeting greeting){
         return service.saveGreetings(greeting);
     }
+
+    //UC5
+    @GetMapping("/greetingById/{id}")
+    public Greeting getGreetingById(@PathVariable Integer id){
+        return service.findGreetingById(id);
+    }
+
 }
