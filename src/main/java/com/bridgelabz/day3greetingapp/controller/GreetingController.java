@@ -5,6 +5,7 @@ import com.bridgelabz.day3greetingapp.service.GreetingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.concurrent.atomic.AtomicLong;
 
 @RestController
@@ -57,6 +58,12 @@ public class GreetingController {
     @GetMapping("/greetingById/{id}")
     public Greeting getGreetingById(@PathVariable Integer id){
         return service.findGreetingById(id);
+    }
+
+    //UC6
+    @GetMapping("/allGreetings")
+    public List<Greeting> findAllGreetings() {
+        return service.findGreetings();
     }
 
 }
