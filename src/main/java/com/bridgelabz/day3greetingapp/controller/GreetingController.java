@@ -66,4 +66,10 @@ public class GreetingController {
         return service.findGreetings();
     }
 
+    //UC7
+    @PutMapping("/editGreeting/{id}")
+    public Greeting editGreeting(@RequestBody Greeting greeting, @PathVariable Integer id){
+        return service.editGreeting(greeting, id);
+    }
+
 }
